@@ -4,16 +4,24 @@ class UserInput extends React.Component{
 	constructor(){
 		super()
 		this.state = {
-			flowers: {}
+			flowers: {},
+			input: '',
+			output: ''
 		}
 	}
 	componentWillMount() {
-		console.log('yooooo');
 		fetch('/flower')
       		.then(response => response.json())
       		.then(data => {
         		this.setState({ flowers: data });
       		})
+	}
+
+	input = (e) => {
+		this.setState({ input: e.target.value });
+	}
+	clicked = () => {
+		this.setState({output: this.state.input});
 	}
 	render(){
 		return(
@@ -22,6 +30,10 @@ class UserInput extends React.Component{
 				<div>
 					{this.state.flowers.name}
 				</div>
+				<input type="text" placeholder="write your name here" onChange={this.input.bind(this)} />
+				<button onClick={this.clicked} >Generate Name</button>
+
+				{this.state.output}
 			</div>
 		)
 	}
