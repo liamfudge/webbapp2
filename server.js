@@ -4,7 +4,7 @@ import express from 'express';
 const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'client2', 'build')));
 
 app.get('/', (req, res) => {
 	res.send('flowers are cool');
